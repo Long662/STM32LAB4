@@ -25,6 +25,13 @@ extern Error_code Error_code_G;
 extern Error_code Last_error_code_G;
 extern uint32_t Error_tick_count_G;
 
-System_Initialization();
+void System_Initialization(void);
+
+void LED_RED_Blink(void);
+void LED_GREEN_Blink(void);
+void LED_YELLOW_Blink(void);
+void LED_PURPLE_Blink(void);
+void LED_BLUE_Blink(void);
+
 
 #endif /* INC_GLOBAL_H_ */

@@ -7,6 +7,8 @@
 
 #include "scheduler.h"
 
+sTask SCH_tasks_G[SCH_MAX_TASKS];
+
 void SCH_Init(void)
 {
 	unsigned char i;
@@ -17,9 +19,9 @@ void SCH_Init(void)
 	// Reset the global error variable
 	// -SCH_Delete_Task() will generate an error code
 	// (because the task array is empty)
-	Error_code_G = 0;
-	Timer_init();
-	Watchdog_Init();
+//	Error_code_G = 0;
+//	Timer_init();
+//	Watchdog_Init();
 }
 
 void SCH_Update(void)
@@ -63,7 +65,7 @@ unsigned char SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned in
 	{
 		// Task list is full
 		// Set the global error variable
-		Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
+		//Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
 		// Also return an error code
 		return SCH_MAX_TASKS;
 	}
@@ -90,25 +92,24 @@ void SCH_Dispatch_Task(void)
 			// - if this is a 'one shot' task, remove it from the array
 			if (SCH_tasks_G[Index].Period == 0)
 			{
-				SCH_Delete_task(Index);
+				SCH_Delete_Task(Index);
 			}
 		}
 	}
-	// Report system status
-	SCH_Report_Status();
-	// The scheduler enters idle mode at this point
-	SCH_Go_To_Sleep();
+//	// Report system status
+//	SCH_Report_Status();
+//	// The scheduler enters idle mode at this point
+//	SCH_Go_To_Sleep();
 }
 
-unsigned char SCH_Delete_Task(const char TASK_INDEX)
+unsigned char SCH_Delete_Task(uint8_t TASK_INDEX)
 {
 	unsigned char Return_code;
 	if (SCH_tasks_G[TASK_INDEX].pTask == 0)
 	{
 		// No task at this location
 		// Set the global error variable
-		Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
-
+		//Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
 		// ... also return an error code
 		Return_code = RETURN_ERROR;
 	}

@@ -10,6 +10,4 @@
 
 #include "global.h"
 
-void Timer_Init();
-
 #endif /* INC_TIMER_H_ */

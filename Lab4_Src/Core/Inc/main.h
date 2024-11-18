@@ -32,7 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "global.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -58,10 +58,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_DEBUG0_Pin GPIO_PIN_0
+#define LED_DEBUG0_GPIO_Port GPIOA
 #define LED_RED_Pin GPIO_PIN_15
 #define LED_RED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
+#define SCH_REPORT_ERRORS
 
+#ifdef SCH_REPORT_ERRORS
+#define Error_port	PORTA
+#endif
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -123,6 +123,7 @@ unsigned char SCH_Delete_Task(const char TASK_INDEX)
 	return Return_code; // return status
 }
 
+/*
 void SCH_Report_Status(void)
 {
 #ifdef SCH_REPORT_ERRORS
@@ -158,3 +159,4 @@ void SCH_Report_Status(void)
 void SCH_Go_To_Sleep(){
 	// Todo: Optional
 }
+*/

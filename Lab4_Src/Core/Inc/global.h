@@ -12,6 +12,7 @@
 #include "scheduler.h"
 #include "timer.h"
 #include "watchdog.h"
+#include "stdint.h"
 
 typedef enum {
 	ERROR_SCH_TOO_MANY_TASKS,

@@ -23,8 +23,7 @@ Core/Src/global.o: ../Core/Src/global.c ../Core/Inc/global.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/scheduler.h ../Core/Inc/global.h ../Core/Inc/timer.h \
- ../Core/Inc/watchdog.h
+ ../Core/Inc/scheduler.h ../Core/Inc/global.h
 
 ../Core/Inc/global.h:
 
@@ -81,7 +80,3 @@ Core/Src/global.o: ../Core/Src/global.c ../Core/Inc/global.h \
 ../Core/Inc/scheduler.h:
 
 ../Core/Inc/global.h:
-
-../Core/Inc/timer.h:
-
-../Core/Inc/watchdog.h:

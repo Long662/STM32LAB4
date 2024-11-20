@@ -80,7 +80,7 @@ unsigned char SCH_Add_Task(void (* pFunction)(), unsigned int DELAY, unsigned in
 
 void SCH_Dispatch_Task(void)
 {
-	unsigned char Index;
+	uint8_t Index;
 	// Dispatches (runs) the next task (if one is ready)
 	for (Index = 0; Index < SCH_MAX_TASKS; Index++)
 	{

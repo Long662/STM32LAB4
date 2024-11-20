@@ -56,7 +56,22 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int timer0_counter = 0;
+int timer0_flag = 0;
+int TIMER_CYCLE = 10;
 
+void setTimer0(int duration){
+	timer0_counter = duration / TIMER_CYCLE;
+	timer0_flag = 0;
+}
+
+void timer0_run(){
+	if (timer0_counter > 0){
+		timer0_counter--;
+		if (timer0_counter == 0)
+			timer0_flag = 1;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -99,10 +114,15 @@ int main(void)
   SCH_Add_Task(LED_PURPLE_Blink, 500, 1000);
   SCH_Add_Task(LED_YELLOW_Blink, 500, 3000);
   SCH_Add_Task(LED_BLUE_Blink, 1500, 0);
-
+  setTimer0(500);
   while (1)
   {
 	  SCH_Dispatch_Task();
+	  if(timer0_flag == 1)
+	  {
+		  HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
+		  setTimer0(500);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -201,10 +221,21 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|LED_PURPLE_Pin|LED_YELLOW_Pin|LED_GREEN_Pin
+  HAL_GPIO_WritePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, LED_RED_Pin|LED_PURPLE_Pin|LED_YELLOW_Pin|LED_GREEN_Pin
                           |LED_BLUE_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : LED_DEBUG_Pin */
+  GPIO_InitStruct.Pin = LED_DEBUG_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LED_DEBUG_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED_RED_Pin LED_PURPLE_Pin LED_YELLOW_Pin LED_GREEN_Pin
                            LED_BLUE_Pin */
@@ -213,7 +244,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
@@ -221,6 +252,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	SCH_Update();
+	timer0_run();
 }
 /* USER CODE END 4 */
 

@@ -1,5 +1,6 @@
-global.c:10:6:LED_RED_Blink	8	static
-global.c:15:6:LED_GREEN_Blink	8	static
-global.c:20:6:LED_YELLOW_Blink	8	static
-global.c:25:6:LED_PURPLE_Blink	8	static
-global.c:30:6:LED_BLUE_Blink	8	static
+global.c:10:6:System_Initialization	8	static
+global.c:19:6:LED_RED_Blink	8	static
+global.c:24:6:LED_PURPLE_Blink	8	static
+global.c:29:6:LED_YELLOW_Blink	8	static
+global.c:34:6:LED_GREEN_Blink	8	static
+global.c:39:6:LED_BLUE_Blink	8	static

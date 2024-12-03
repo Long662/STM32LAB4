@@ -109,12 +109,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  SCH_Add_Task(LED_RED_Blink, 1, 1000);
-  SCH_Add_Task(LED_GREEN_Blink, 2, 500);
-  SCH_Add_Task(LED_PURPLE_Blink, 500, 1000);
-  SCH_Add_Task(LED_YELLOW_Blink, 500, 3000);
-  SCH_Add_Task(LED_BLUE_Blink, 1500, 0);
+  SCH_Add_Task(LED_RED_Blink, 1, 100);
+  SCH_Add_Task(LED_PURPLE_Blink, 50, 100);
+  SCH_Add_Task(LED_YELLOW_Blink, 51, 300);
+  SCH_Add_Task(LED_GREEN_Blink, 10, 200);
+  SCH_Add_Task(LED_BLUE_Blink, 100, 0);
   setTimer0(500);
+  System_Initialization();
   while (1)
   {
 	  SCH_Dispatch_Task();

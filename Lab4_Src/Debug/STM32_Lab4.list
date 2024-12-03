@@ -313,8 +313,8 @@ int main(void)
  800028a:	2133      	movs	r1, #51	; 0x33
  800028c:	4813      	ldr	r0, [pc, #76]	; (80002dc <main+0x84>)
  800028e:	f000 f98b 	bl	80005a8 <SCH_Add_Task>
-  SCH_Add_Task(LED_GREEN_Blink, 10, 100);
- 8000292:	2264      	movs	r2, #100	; 0x64
+  SCH_Add_Task(LED_GREEN_Blink, 10, 200);
+ 8000292:	22c8      	movs	r2, #200	; 0xc8
  8000294:	210a      	movs	r1, #10
  8000296:	4812      	ldr	r0, [pc, #72]	; (80002e0 <main+0x88>)
  8000298:	f000 f986 	bl	80005a8 <SCH_Add_Task>

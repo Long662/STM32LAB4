@@ -30,13 +30,11 @@ void SCH_Update(void)
 	// NOTE: calculations are in *TICKS*
 	for (Index = 0; Index < SCH_MAX_TASKS; Index++)
 	{
-		// Check if there is a task at this location
 		if (SCH_tasks_G[Index].pTask)
 		{
 			if (SCH_tasks_G[Index].Delay == 0)
 			{
 				// The task is due to run
-				// Inc. the 'RunMe' flag
 				SCH_tasks_G[Index].RunMe += 1;
 				if (SCH_tasks_G[Index].Period)
 				{
@@ -46,7 +44,7 @@ void SCH_Update(void)
 			}
 			else
 			{
-				// Not yet ready to run: just decrement the delay
+				// Not yet ready to run
 				SCH_tasks_G[Index].Delay -= 1;
 			}
 		}
